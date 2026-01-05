@@ -4,9 +4,11 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UserSerializer,UserLoginSerializer
 from django.contrib.auth import authenticate
+from .renderers import UserRenderer
 # Create your views here.
 
 class UserRegistrationView(APIView):
+    renderer_classes=[UserRenderer]
     def post(self,request):
             serilaizer=UserLoginSerializer(data=request.data)
             if serilaizer.is_valid(raise_exception=True):
